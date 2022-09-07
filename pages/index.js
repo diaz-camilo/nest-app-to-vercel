@@ -12,10 +12,9 @@ export default function Home({ allPostsData }) {
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>[Your Self Introduction]</p>
+        <p> Hi👋 </p>
         <p>
-          (This is a sample website - you’ll be building a site like this in{' '}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
+          I've created this sample app to show what can be done with next.js
         </p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
@@ -32,6 +31,15 @@ export default function Home({ allPostsData }) {
               </small>
             </li>
           ))}
+          <li className={utilStyles.listItem}>
+            <Link href={'/to-do-list'}>
+              <a>To do list built with react</a>
+            </Link>
+            <br />
+            <small className={utilStyles.lightText}>
+              <Date dateString={'2022-09-07'} />
+            </small>
+          </li>
         </ul>
       </section>
     </Layout>
@@ -42,7 +50,7 @@ export async function getStaticProps() {
   const allPostsData = getSortedPostsData()
   return {
     props: {
-      allPostsData
-    }
+      allPostsData,
+    },
   }
 }
