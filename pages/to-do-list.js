@@ -3,11 +3,16 @@ import Head from 'next/head';
 import utilStyles from '../styles/utils.module.css';
 
 export default function ToDoList() {
+  let number = 0;
+  let numbers = [];
   function handleOnClick(event) {
-    console.log('clicked the button');
+    number++;
+    numbers.push(number);
+    console.log('clicked the button', { number, numbers });
 
     event.preventDefault(); // this is needed to stop the page refresh
   }
+
   return (
     <Layout>
       <Head>
@@ -23,9 +28,17 @@ export default function ToDoList() {
               you can pass a function to this event handler to handle the event.
               here for example we are telling react that every time the user click
               this button, it should call the handle click function
-              https://reactjs.org/docs/forms.html */}
+              https://reactjs.org/docs/forms.html   Calle45f#73-50
+              */}
               <button onClick={handleOnClick}>add item</button>
             </form>
+            <ul>
+              {/* the map function takes each element in an array and returns a
+              new array of the new items */}
+              {numbers.map((number) => (
+                <li key={number}>{number}</li>
+              ))}
+            </ul>
           </div>
         </div>
       </article>
