@@ -1,13 +1,19 @@
 import Layout from '../components/layout';
 import Head from 'next/head';
 import utilStyles from '../styles/utils.module.css';
+import { useState } from 'react';
 
 export default function ToDoList() {
-  let number = 0;
-  let numbers = [];
+  // let number = 0;
+  const [number, setNumber] = useState(0);
+  // This is how we use variables* that should trigger a rerender
+  // every time ir runs, it will replace the value of numbers
+  const [numbers, functionToSetTheValueOfNumbers] = useState([]);
+  // let numbers = [];
   function handleOnClick(event) {
-    number++;
-    numbers.push(number);
+    setNumber(number + 1);
+    // numbers.push(number);
+    functionToSetTheValueOfNumbers([...numbers, number]);
     console.log('clicked the button', { number, numbers });
 
     event.preventDefault(); // this is needed to stop the page refresh
@@ -28,8 +34,7 @@ export default function ToDoList() {
               you can pass a function to this event handler to handle the event.
               here for example we are telling react that every time the user click
               this button, it should call the handle click function
-              https://reactjs.org/docs/forms.html   Calle45f#73-50
-              */}
+              https://reactjs.org/docs/forms.html */}
               <button onClick={handleOnClick}>add item</button>
             </form>
             <ul>
