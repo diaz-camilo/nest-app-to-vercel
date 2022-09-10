@@ -50,3 +50,21 @@
 .lightText {
   color: #666;
 }
+
+.todoListContainer button,
+.todoListContainer input
+{
+ margin-right: 1rem;
+ margin-bottom: 0.5rem;
+}
+
+.todoListContainer li div{
+  margin-bottom: 1rem;
+  max-width: 500px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.todoListContainer form {
+  display: grid;
+}
