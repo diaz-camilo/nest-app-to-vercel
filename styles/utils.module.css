@@ -52,13 +52,12 @@
 }
 
 .todoListContainer button,
-.todoListContainer input
-{
- margin-right: 1rem;
- margin-bottom: 0.5rem;
+.todoListContainer input {
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
 }
 
-.todoListContainer li div{
+.todoListContainer li div {
   margin-bottom: 1rem;
   max-width: 500px;
   display: flex;
