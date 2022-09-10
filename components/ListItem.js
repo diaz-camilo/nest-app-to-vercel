@@ -11,14 +11,7 @@ export default function ListItem({
   handleRemove,
 }) {
   return (
-    <div
-      style={{
-        marginBottom: '1rem',
-        maxWidth: '500px',
-        display: 'flex',
-        justifyContent: 'space-between',
-      }}
-    >
+    <div>
       <span
         style={
           listItem.isFinished
