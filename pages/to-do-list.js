@@ -2,21 +2,38 @@ import Layout from '../components/layout';
 import Head from 'next/head';
 import utilStyles from '../styles/utils.module.css';
 import { useState } from 'react';
+import ListItem from '../components/ListItem';
 
 export default function ToDoList() {
-  // let number = 0;
-  const [number, setNumber] = useState(0);
-  // This is how we use variables* that should trigger a rerender
-  // every time ir runs, it will replace the value of numbers
-  const [numbers, functionToSetTheValueOfNumbers] = useState([]);
-  // let numbers = [];
-  function handleOnClick(event) {
-    setNumber(number + 1);
-    // numbers.push(number);
-    functionToSetTheValueOfNumbers([...numbers, number]);
-    console.log('clicked the button', { number, numbers });
+  const [listItems, setListItems] = useState([]);
+  const [inputValue, setInputValue] = useState('');
 
-    event.preventDefault(); // this is needed to stop the page refresh
+  function handleInputChange(event) {
+    setInputValue(event.target.value);
+  }
+
+  function handleAddItemClick(event) {
+    event.preventDefault();
+    if (!inputValue.trim()) {
+      return;
+    }
+    setListItems([
+      ...listItems,
+      { description: inputValue, isFinished: false },
+    ]);
+    setInputValue('');
+  }
+
+  function handleFinish(index) {
+    const listItemsCopy = listItems.slice();
+    listItemsCopy[index].isFinished = !listItemsCopy[index].isFinished;
+    setListItems(listItemsCopy);
+  }
+  function handleRemove(index) {
+    const listItemsCopy = [...listItems];
+    listItemsCopy.splice(index, 1);
+    console.log(listItemsCopy);
+    setListItems(listItemsCopy);
   }
 
   return (
@@ -29,21 +46,21 @@ export default function ToDoList() {
         <div className={utilStyles.todoListContainer}>
           <div>
             <form>
-              <input type={'text'}></input>
-              {/* HTML-like components in react have onClick event handlers. 
-              you can pass a function to this event handler to handle the event.
-              here for example we are telling react that every time the user click
-              this button, it should call the handle click function
-              https://reactjs.org/docs/forms.html */}
-              <button onClick={handleOnClick}>add item</button>
+              <input value={inputValue} onChange={handleInputChange}></input>
+              <button onClick={handleAddItemClick}>add item</button>
             </form>
-            <ul>
-              {/* the map function takes each element in an array and returns a
-              new array of the new items */}
-              {numbers.map((number) => (
-                <li key={number}>{number}</li>
+            <ol>
+              {listItems.map((listItem, index) => (
+                <li key={index}>
+                  <ListItem
+                    listItem={listItem}
+                    index={index}
+                    handleFinish={handleFinish}
+                    handleRemove={handleRemove}
+                  />
+                </li>
               ))}
-            </ul>
+            </ol>
           </div>
         </div>
       </article>
