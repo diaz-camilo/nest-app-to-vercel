@@ -6,7 +6,7 @@ import ListItem from '../components/ListItem';
 
 export default function ToDoList() {
   const sampleItems = [
-    { description: 'go to the shop 🛒', isFinished: false },
+    { description: 'go to the shop 🛒', isFinished: true },
     { description: 'buy ice cream 🍦', isFinished: false },
     { description: 'eat ice cream 😋', isFinished: false },
   ];
@@ -35,6 +35,16 @@ export default function ToDoList() {
     listItemsCopy[index].isFinished = !listItemsCopy[index].isFinished;
     setListItems(listItemsCopy);
   }
+
+  function handleFinishAll() {
+    setListItems(
+      listItems.map((listItem) => ({
+        description: listItem.description,
+        isFinished: true,
+      })),
+    );
+  }
+
   function handleRemove(index) {
     const listItemsCopy = [...listItems];
     listItemsCopy.splice(index, 1);
@@ -55,6 +65,8 @@ export default function ToDoList() {
               <input value={inputValue} onChange={handleInputChange}></input>
               <button onClick={handleAddItemClick}>add item</button>
             </form>
+            <button onClick={handleFinishAll}>finish all ✅</button>
+            <button onClick={() => setListItems([])}>remove all ❌</button>
             <ol>
               {listItems.map((listItem, index) => (
                 <li key={index}>
