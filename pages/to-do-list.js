@@ -5,7 +5,13 @@ import { useState } from 'react';
 import ListItem from '../components/ListItem';
 
 export default function ToDoList() {
-  const [listItems, setListItems] = useState([]);
+  const sampleItems = [
+    { description: 'go to the shop 🛒', isFinished: false },
+    { description: 'buy ice cream 🍦', isFinished: false },
+    { description: 'eat ice cream 😋', isFinished: false },
+  ];
+
+  const [listItems, setListItems] = useState(sampleItems);
   const [inputValue, setInputValue] = useState('');
 
   function handleInputChange(event) {
