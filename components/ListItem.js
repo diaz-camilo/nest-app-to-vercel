@@ -10,7 +10,6 @@ export default function ListItem({
   handleFinish,
   handleRemove,
 }) {
-  console.log(listItem);
   return (
     <div
       style={{
